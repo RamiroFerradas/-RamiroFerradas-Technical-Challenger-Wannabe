@@ -6,12 +6,15 @@ export default function useFetchCharacters(page) {
   const [totalCharacters, setTotalCharacters] = useState();
 
   const fetchCharacters = async () => {
-    const response = (
-      await axios.get(`https://swapi.dev/api/people/?page=${page}`)
-    ).data;
-    console.log(response, "response");
-    setCharacters(await response.results);
-    setTotalCharacters(await response.count);
+    try {
+      const response = (
+        await axios.get(`https://swapi.dev/api/people/?page=${page}`)
+      ).data;
+      setCharacters(await response.results);
+      setTotalCharacters(await response.count);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
