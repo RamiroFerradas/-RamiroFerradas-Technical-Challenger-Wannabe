@@ -5,16 +5,18 @@ import useLoader from "../../Hooks/useLoader";
 import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
 import Swal from "sweetalert2";
 
-export default function SearchBar({ characters, setCharacters, setPage }) {
+export default function SearchBar({ setCharacters, setPage, setSearch }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
   const { search, fetchSearchCharacter } = useSearchCharacter();
+  console.log(search.length);
 
   useEffect(() => {
     if (name) {
       setLoad(false);
       if (search.length) {
         setCharacters(search);
+        setSearch(true);
       } else {
         Swal.fire({
           icon: "error",
@@ -42,6 +44,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
   const handleClear = () => {
     setCharacters([]);
     setPage(1);
+    setSearch(false);
   };
 
   return (

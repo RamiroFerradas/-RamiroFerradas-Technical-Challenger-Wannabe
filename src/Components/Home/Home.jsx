@@ -7,26 +7,27 @@ import SearchBar from "../NavBar/SearchBar";
 import CardHome from "../CardHome/CardHome";
 import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { Col, Row } from "react-bootstrap";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useState(false);
-  const { characters, totalCharacters, setCharacters, page, setPage } =
-    useFetchCharacters();
+  const {
+    characters,
+    totalCharacters,
+    setCharacters,
+    page,
+    setPage,
+    setTotalCharacters,
+  } = useFetchCharacters();
   const [url, setUrl] = useState();
-
-  let pageNumbers = [];
-  let [characterPerPage, setcharacterPerPage] = useState(10);
-  let totalPages = Math.ceil(totalCharacters / characterPerPage);
-
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const [search, setSearch] = useLocalStorage("search", false);
 
   const handleDetail = async (e) => {
     setUrl(e);
     setCharacterDetails(!characterDetails);
   };
 
+  console.log(search);
   return (
     <div className={style.body}>
       {characterDetails && (
@@ -37,9 +38,11 @@ export default function Home() {
         />
       )}
       <SearchBar
+        setSearch={setSearch}
         characters={characters}
         setCharacters={setCharacters}
         setPage={setPage}
+        setTotalCharacters={setTotalCharacters}
       />
 
       {!characters.length ? (
@@ -55,12 +58,14 @@ export default function Home() {
               );
             })}
           </Row>
-          <Paginado
-            totalCharacters={totalCharacters}
-            page={page}
-            setPage={setPage}
-            setCharacters={setCharacters}
-          />
+          {!search && (
+            <Paginado
+              totalCharacters={totalCharacters}
+              page={page}
+              setPage={setPage}
+              setCharacters={setCharacters}
+            />
+          )}
         </div>
       )}
     </div>

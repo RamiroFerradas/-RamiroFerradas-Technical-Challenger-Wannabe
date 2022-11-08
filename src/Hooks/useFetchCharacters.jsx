@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocalStorage } from "./useLocalStorage";
 
 export default function useFetchCharacters() {
-  const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(1);
+  const [characters, setCharacters] = useLocalStorage("character", []);
 
-  const [totalCharacters, setTotalCharacters] = useState();
+  const [page, setPage] = useLocalStorage("page", 1);
+
+  const [totalCharacters, setTotalCharacters] = useLocalStorage(
+    "totalCharacters",
+    ""
+  );
   const fetchCharacters = async () => {
     try {
       const response = (
@@ -29,5 +34,6 @@ export default function useFetchCharacters() {
     totalCharacters,
     setCharacters,
     fetchCharacters,
+    setTotalCharacters,
   };
 }

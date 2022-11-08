@@ -6,6 +6,7 @@ export default function Paginado({
   setPage,
   totalCharacters,
   setCharacters,
+  setTotalCharacters,
 }) {
   let pageNumbers = [];
   let [characterPerPage, setcharacterPerPage] = useState(10);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import useFetchCharacters from "./useFetchCharacters";
 
 export default function useSearchCharacter() {
   const [search, setSearch] = useState([]);
