@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Pagination, Button } from "react-bootstrap";
-import useFetchCharacters from "../../Hooks/useFetchCharacters";
 
 export default function Paginado({
   page,

@@ -7,18 +7,11 @@ import Detail from "../Detail/Detail";
 import SearchBar from "../NavBar/SearchBar";
 import CardHome from "../CardHome/CardHome";
 import { Col, Row } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useState(false);
-  const {
-    characters,
-    totalCharacters,
-    setCharacters,
-    fetchCharacters,
-    page,
-    setPage,
-  } = useFetchCharacters();
+  const { characters, totalCharacters, setCharacters, page, setPage } =
+    useFetchCharacters();
   const [url, setUrl] = useState();
 
   let pageNumbers = [];
