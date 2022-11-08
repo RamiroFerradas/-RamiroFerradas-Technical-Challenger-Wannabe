@@ -8,10 +8,10 @@ export default function CardHome({ character, handleDetail }) {
       <Card
         className="text-center"
         body
-        style={{ width: "15vw" }}
+        // style={{ width: "15vw" }}
         key={character.name}
         onClick={() => handleDetail(character.url)}
-        border="info"
+        border="warning"
       >
         <Card.Title style={{ fontSize: "14px" }}>{character.name}</Card.Title>
 

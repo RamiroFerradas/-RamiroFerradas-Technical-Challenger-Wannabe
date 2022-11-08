@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
-import useFetchCharacters from "../../Hooks/useFetchCharacters";
+import { Pagination, Button, PageItem } from "react-bootstrap";
+import styles from "./Paginado.module.css";
+import { GrNext, GrFormPrevious } from "react-icons/gr";
+import { FcPrevious } from "react-icons/fc";
 
 export default function Paginado({
   page,
@@ -23,20 +25,41 @@ export default function Paginado({
 
   return (
     <div>
-      <Pagination className="d-flex justify-content-center">
+      <Pagination className="d-flex justify-content-center mt-3" size="sm">
+        <Button
+          className="me-3"
+          variant="dark"
+          disabled={page === 1}
+          onClick={() => {
+            setPage(page - 1), setCharacters([]);
+          }}
+        >
+          {"<"}
+        </Button>
         {pageNumbers?.map((num) => {
           return (
-            <Pagination.Item
+            <Button
               size="sm"
+              className="me-1 text-warning"
               key={num}
-              active={page === num}
-              value={num}
+              disabled={page === num}
               onClick={() => handleClick(num)}
+              variant="dark"
             >
               {num}
-            </Pagination.Item>
+            </Button>
           );
         })}
+        <Button
+          className="ms-3"
+          variant="dark"
+          disabled={page === totalPages}
+          onClick={() => {
+            setPage(page + 1), setCharacters([]);
+          }}
+        >
+          {">"}
+        </Button>
       </Pagination>
     </div>
   );

@@ -39,15 +39,11 @@ export default function Home() {
     />
   ) : (
     <div className={style.body}>
-      {!characters.length ? (
-        <div></div>
-      ) : (
-        <SearchBar
-          characters={characters}
-          setCharacters={setCharacters}
-          setPage={setPage}
-        />
-      )}
+      <SearchBar
+        characters={characters}
+        setCharacters={setCharacters}
+        setPage={setPage}
+      />
 
       {!characters.length ? (
         <Loader />
