@@ -2,15 +2,26 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useFetchFilms() {
-  const [films, setFilms] = useState([]);
+  const [films, setFilms] = useState({ title: "" });
 
   const fetchDetailsFilms = async (value) => {
-    console.log(value);
-    const res = await value.map(async (e) => {
-      return (await axios.get(e)).data;
-    });
-    console.log(res);
-    setFilms(res);
+    if (value) {
+      try {
+        const res = await value.map(async (e) => {
+          const response = (await axios(e)).data;
+          const res = response.title;
+          setFilms((state) => {
+            return {
+              ...state,
+              title: res,
+            };
+          });
+        });
+        return res;
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   useEffect(() => {

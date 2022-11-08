@@ -11,9 +11,14 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useState(false);
-  const { characters, totalCharacters, setCharacters, page, setPage } =
+  const { characters, totalCharacters, setCharacters, fetchCharacters } =
     useFetchCharacters();
   const [url, setUrl] = useState();
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    fetchCharacters(page);
+  }, [page]);
 
   let pageNumbers = [];
   let [characterPerPage, setcharacterPerPage] = useState(10);
@@ -22,8 +27,6 @@ export default function Home() {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-
-  const [show, setShow] = useState(true);
 
   const handleDetail = async (e) => {
     setUrl(e);

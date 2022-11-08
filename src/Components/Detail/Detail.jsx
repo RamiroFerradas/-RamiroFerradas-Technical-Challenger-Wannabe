@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import useFetchDetails from "../../Hooks/useFetchDetails";
 import useFetchPlanets from "../../Hooks/useFetchPlanets";
 import styles from "./Detail.module.css";
+import { textTransformation } from "../../Utils/TextTransformation";
 
 import Loader from "../Loader/Loader";
+import useFetchSpecies from "../../Hooks/useFetchSpecies";
+import useFetchFilms from "../../Hooks/useFetchFilms";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
   const { detail } = useFetchDetails(url);
   const { planet, fetchDetailsPlanets } = useFetchPlanets();
+  const { species, fetchSpecies } = useFetchSpecies();
 
-  const homeworld = detail.homeworld;
-  fetchDetailsPlanets(homeworld);
+  useEffect(() => {
+    fetchDetailsPlanets(detail.homeworld);
+    fetchSpecies(detail.species);
+  }, [detail]);
 
   return (
     <div className={styles.body}>
@@ -25,33 +31,43 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
           <Card
             bg="dark"
             text="light"
-            style={{ width: "18rem" }}
+            style={{ width: "18rem", height: "25rem" }}
             className="mb-2 text-center"
           >
             <Card.Body>
-              <Card.Title>{detail.name}</Card.Title>
+              <Card.Title>{detail.name.toUpperCase()}</Card.Title>
               <Card.Text>
                 <span>Height: {detail.height} mts.</span>
               </Card.Text>
               <Card.Text>
-                <span>Hair color: {detail.hair_color}</span>
+                <span>Hair color: {textTransformation(detail.hair_color)}</span>
               </Card.Text>
               <Card.Text>
-                <span>Skin color: {detail.skin_color}</span>
+                <span>Skin color: {textTransformation(detail.skin_color)}</span>
               </Card.Text>
               <Card.Text>
-                <span>Birth year: {detail.birth_year}</span>
+                <span>Birth year: {textTransformation(detail.birth_year)}</span>
               </Card.Text>
               <Card.Text>
-                <span>Gender: {detail.gender}</span>
+                <span>Gender: {textTransformation(detail.gender)}</span>
               </Card.Text>
               <Card.Text>
-                <span>Gender: {detail.gender}</span>
+                <span>Gender: {textTransformation(detail.gender)}</span>
               </Card.Text>
-              {planet && (
+              {planet.length ? (
                 <Card.Text>
-                  <span>Homeworld: {planet && planet}</span>
+                  <span>Homeworld: {textTransformation(planet)}</span>
                 </Card.Text>
+              ) : (
+                <span></span>
+              )}
+
+              {species.length ? (
+                <Card.Text>
+                  <span>Species: {species}</span>
+                </Card.Text>
+              ) : (
+                <span></span>
               )}
             </Card.Body>
           </Card>
@@ -62,7 +78,7 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
           variant="outline-warning"
           onClick={() => setCharacterDetails(!characterDetails)}
         >
-          {"<"} Back
+          Close
         </Button>
       )}
     </div>
