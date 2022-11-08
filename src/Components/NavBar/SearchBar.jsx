@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Navbar, Stack } from "react-bootstrap";
-import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import useSearchCharacter from "../../Hooks/useFetchSearchCharacter";
 import useLoader from "../../Hooks/useLoader";
-import Loader from "../Loader/Loader";
 import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
 import Swal from "sweetalert2";
 
 export default function SearchBar({ characters, setCharacters, setPage }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
-  const [noMatch, setNoMatch] = useState(false);
 
   const { search, fetchSearchCharacter } = useSearchCharacter();
 
@@ -19,9 +16,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
       setLoad(false);
       if (search.length) {
         setCharacters(search);
-        setNoMatch(false);
       } else {
-        setNoMatch(true);
         Swal.fire({
           icon: "error",
           text: "No character found with that name",
@@ -64,11 +59,11 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
                 className="d-inline-block align-top"
               />
             </Navbar.Brand>
-            <Form className="d-flex  " onSubmit={handleSubmit}>
+            <Form className="d-flex" onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
-                placeholder="Search"
-                className="me-3"
+                placeholder="Search..."
+                className="me-3 text-center form-control"
                 aria-label="Search"
                 onChange={(e) => handleInputChange(e)}
               />
