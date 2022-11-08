@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useFetchCharacters(page) {
+export default function useFetchCharacters() {
   const [characters, setCharacters] = useState([]);
+  const [page, setPage] = useState(1);
+
   const [totalCharacters, setTotalCharacters] = useState();
   const fetchCharacters = async () => {
     try {
@@ -17,9 +19,8 @@ export default function useFetchCharacters(page) {
   };
 
   useEffect(() => {
-    console.log(characters);
     if (!characters.length) fetchCharacters();
   }, [page, characters.length]);
 
-  return { characters, totalCharacters, setCharacters };
+  return { characters, totalCharacters, setCharacters, page, setPage };
 }

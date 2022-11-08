@@ -11,14 +11,12 @@ import useFetchDetails from "../../Hooks/useFetchDetails";
 import Detail from "../Detail/Detail";
 import Navbar from "../NavBar/Navbar";
 import useLoader from "../../Hooks/useLoader";
+import Card from "../Card/Card";
 
 export default function Home() {
-  const { load } = useLoader();
-  console.log(load);
-  const [page, setPage] = useState(1);
   const [characterDetails, setCharacterDetails] = useState(false);
-  const { characters, totalCharacters, setCharacters } =
-    useFetchCharacters(page);
+  const { characters, totalCharacters, setCharacters, page, setPage } =
+    useFetchCharacters();
   const [url, setUrl] = useState();
 
   let pageNumbers = [];
@@ -49,22 +47,19 @@ export default function Home() {
       {!characters.length ? (
         <div></div>
       ) : (
-        <Navbar characters={characters} setCharacters={setCharacters} />
+        <Navbar
+          characters={characters}
+          setCharacters={setCharacters}
+          setPage={setPage}
+        />
       )}
-      <div>
-        {pageNumbers?.map((num) => {
-          return (
-            <button
-              key={num}
-              className={page === num ? "btnActive" : "btnPagination"}
-              value={num}
-              onClick={handleClick}
-            >
-              {num}
-            </button>
-          );
-        })}
-      </div>
+
+      <Paginado
+        totalCharacters={totalCharacters}
+        page={page}
+        setPage={setPage}
+        setCharacters={setCharacters}
+      />
       <ul>
         {!characters.length ? (
           <Loader />
@@ -72,11 +67,7 @@ export default function Home() {
           <div>
             {characters.map((e) => {
               return (
-                <li key={e.name} onClick={() => handleDetail(e.url)}>
-                  <button>
-                    <span>{e.name}</span>
-                  </button>
-                </li>
+                <Card handleDetail={handleDetail} name={e.name} url={e.url} />
               );
             })}
           </div>

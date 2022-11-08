@@ -4,7 +4,7 @@ import useSearchCharacter from "../../Hooks/useFetchSearchCharacter";
 import useLoader from "../../Hooks/useLoader";
 import Loader from "../Loader/Loader";
 
-export default function SearchBar({ characters, setCharacters }) {
+export default function SearchBar({ characters, setCharacters, setPage }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
 
@@ -21,8 +21,6 @@ export default function SearchBar({ characters, setCharacters }) {
     e.preventDefault();
     fetchSearchCharacter(name);
     setLoad(true);
-    // e.target.reset();
-    // setCurrentPage(1);
   };
 
   const handleInputChange = (e) => {
@@ -31,6 +29,7 @@ export default function SearchBar({ characters, setCharacters }) {
 
   const handleClear = () => {
     setCharacters([]);
+    setPage(1);
   };
 
   return load ? (
@@ -46,9 +45,11 @@ export default function SearchBar({ characters, setCharacters }) {
           onChange={(e) => handleInputChange(e)}
           placeholder="Search Character..."
         />
+        <button type="submit" value="Submit">
+          SEARCH
+        </button>
+        <button onClick={handleClear}>CLEAR</button>
       </form>
-      <button type="submit">SEARCH</button>
-      <button onClick={handleClear}>CLEAR</button>
     </div>
   );
 }

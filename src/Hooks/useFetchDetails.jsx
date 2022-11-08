@@ -6,7 +6,6 @@ export default function useFetchDetails(value) {
 
   const fetchDetailsCharacter = async () => {
     const response = (await axios.get(value)).data;
-
     setDetail(await response);
   };
 

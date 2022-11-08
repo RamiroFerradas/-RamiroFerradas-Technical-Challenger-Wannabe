@@ -1,10 +1,16 @@
 import React from "react";
+import Filters from "./Filters";
 import SearchBar from "./SearchBar";
 
-export default function Navbar({ characters, setCharacters }) {
+export default function Navbar({ characters, setCharacters, setPage }) {
   return (
     <div>
-      <SearchBar characters={characters} setCharacters={setCharacters} />
+      <Filters />
+      <SearchBar
+        characters={characters}
+        setCharacters={setCharacters}
+        setPage={setPage}
+      />
     </div>
   );
 }

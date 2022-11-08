@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function useFetchPlanets(value) {
-  const [planet, setPlanet] = useState({});
-  // console.log(planet, "planetaa");
+export default function useFetchPlanets() {
+  const [planet, setPlanet] = useState([]);
 
-  const fetchDetailsCharacter = async () => {
+  const fetchDetailsPlanets = async (value) => {
     const response = (await axios(value)).data;
-    // console.log(response);
-    setPlanet(response);
+
+    setPlanet(await response.name);
   };
 
   useEffect(() => {
-    fetchDetailsCharacter();
-  }, []);
-  return { planet };
+    if (!planet.length) fetchDetailsPlanets();
+  }, [planet.length]);
+
+  return { planet, fetchDetailsPlanets };
 }
