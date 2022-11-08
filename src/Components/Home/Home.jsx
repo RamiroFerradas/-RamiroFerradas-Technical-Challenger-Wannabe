@@ -61,15 +61,14 @@ export default function Home() {
               );
             })}
           </Row>
+          <Paginado
+            totalCharacters={totalCharacters}
+            page={page}
+            setPage={setPage}
+            setCharacters={setCharacters}
+          />
         </div>
       )}
-
-      <Paginado
-        totalCharacters={totalCharacters}
-        page={page}
-        setPage={setPage}
-        setCharacters={setCharacters}
-      />
     </div>
   );
 }
