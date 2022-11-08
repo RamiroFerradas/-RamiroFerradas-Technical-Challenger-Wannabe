@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Home.module.css";
-import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import Paginado from "../Paginado/Paginado";
 import Loader from "../Loader/Loader";
 import Detail from "../Detail/Detail";
 import SearchBar from "../NavBar/SearchBar";
 import CardHome from "../CardHome/CardHome";
+import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { Col, Row } from "react-bootstrap";
 
 export default function Home() {

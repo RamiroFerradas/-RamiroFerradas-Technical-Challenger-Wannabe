@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import styles from "./Detail.module.css";
+import Loader from "../Loader/Loader";
 import useFetchDetails from "../../Hooks/useFetchDetails";
 import useFetchPlanets from "../../Hooks/useFetchPlanets";
 import useFetchSpecies from "../../Hooks/useFetchSpecies";
-import styles from "./Detail.module.css";
-import Loader from "../Loader/Loader";
+import { Button, Card, Container } from "react-bootstrap";
 import { textTransformation } from "../../Utils/TextTransformation";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
@@ -22,7 +22,7 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
   };
 
   return (
-    <div className={styles.body} onClick={handleClose}>
+    <div className={styles.body}>
       <Container
         fluid
         className="d-flex justify-content-center align-items-center"
@@ -50,9 +50,6 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
               </Card.Text>
               <Card.Text>
                 <span>Birth year: {textTransformation(detail.birth_year)}</span>
-              </Card.Text>
-              <Card.Text>
-                <span>Gender: {textTransformation(detail.gender)}</span>
               </Card.Text>
               <Card.Text>
                 <span>Gender: {textTransformation(detail.gender)}</span>

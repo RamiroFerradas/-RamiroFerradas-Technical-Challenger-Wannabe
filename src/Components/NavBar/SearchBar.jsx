@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 export default function SearchBar({ characters, setCharacters, setPage }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
-
   const { search, fetchSearchCharacter } = useSearchCharacter();
 
   useEffect(() => {
@@ -19,9 +18,9 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
       } else {
         Swal.fire({
           icon: "error",
-          text: "No character found with that name",
+          text: "No characters match the search criteria",
           showConfirmButton: false,
-          timer: 1400,
+          timer: 1800,
           background: "#0c0c0cb0",
           color: "white",
         });
@@ -71,7 +70,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
                 className="me-3"
                 type="submit"
                 variant="outline-warning"
-                disabled={load || !name || /[^\w\s]/.test(name)}
+                disabled={load || !name}
               >
                 {load ? "Loading…" : "Search"}
               </Button>

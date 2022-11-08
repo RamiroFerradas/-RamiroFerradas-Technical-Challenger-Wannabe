@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import useFetchPlanets from "../../Hooks/useFetchPlanets";
 
 export default function CardHome({ character, handleDetail }) {
   return (
