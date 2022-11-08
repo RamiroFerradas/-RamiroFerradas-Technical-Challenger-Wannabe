@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocalStorage } from "./useLocalStorage";
 
 export default function useFetchDetails(value) {
-  const [detail, setDetail] = useState({});
+  const [detail, setDetail] = useLocalStorage("detail", {});
 
   const fetchDetailsCharacter = async () => {
     const response = (await axios.get(await value)).data;
@@ -12,5 +13,5 @@ export default function useFetchDetails(value) {
   useEffect(() => {
     fetchDetailsCharacter();
   }, []);
-  return { detail };
+  return { detail, setDetail };
 }

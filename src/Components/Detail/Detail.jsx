@@ -8,7 +8,7 @@ import { Button, Card, Container } from "react-bootstrap";
 import { textTransformation } from "../../Utils/TextTransformation";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
-  const { detail } = useFetchDetails(url);
+  const { detail, setDetail } = useFetchDetails(url);
   const { planet, fetchDetailsPlanets } = useFetchPlanets();
   const { species, fetchSpecies } = useFetchSpecies();
 
@@ -19,6 +19,7 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
 
   const handleClose = () => {
     setCharacterDetails(!characterDetails);
+    setDetail("detail", {});
   };
 
   return (

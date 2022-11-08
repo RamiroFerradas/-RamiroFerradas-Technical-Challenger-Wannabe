@@ -9,7 +9,6 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
   const { search, fetchSearchCharacter } = useSearchCharacter();
-  console.log(search.length);
 
   useEffect(() => {
     if (name) {

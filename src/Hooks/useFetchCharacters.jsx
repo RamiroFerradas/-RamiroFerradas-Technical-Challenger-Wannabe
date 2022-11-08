@@ -4,9 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 
 export default function useFetchCharacters() {
   const [characters, setCharacters] = useLocalStorage("character", []);
-
   const [page, setPage] = useLocalStorage("page", 1);
-
   const [totalCharacters, setTotalCharacters] = useLocalStorage(
     "totalCharacters",
     ""

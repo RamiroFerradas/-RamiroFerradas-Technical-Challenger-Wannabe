@@ -10,7 +10,10 @@ import { Col, Row } from "react-bootstrap";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 export default function Home() {
-  const [characterDetails, setCharacterDetails] = useState(false);
+  const [characterDetails, setCharacterDetails] = useLocalStorage(
+    "modalDetail",
+    false
+  );
   const {
     characters,
     totalCharacters,
@@ -27,7 +30,6 @@ export default function Home() {
     setCharacterDetails(!characterDetails);
   };
 
-  console.log(search);
   return (
     <div className={style.body}>
       {characterDetails && (
