@@ -19,3 +19,5 @@ Your app must have the following:
   of each component and how you make it reusable.
 - Proper use of git. Please don´t upload your project to GitHub with just one commit; we
   want to see how you use GitHub and how you document each change in your code.
+
+  START: -NPM INSTALL, NPM RUN DEV

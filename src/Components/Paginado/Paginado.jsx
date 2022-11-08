@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Pagination } from "react-bootstrap";
 import useFetchCharacters from "../../Hooks/useFetchCharacters";
 
 export default function Paginado({
@@ -15,25 +16,28 @@ export default function Paginado({
     pageNumbers.push(i);
   }
 
-  const handleClick = async (e) => {
-    setPage(await e.target.value);
+  const handleClick = async (num) => {
+    setPage(await num);
     setCharacters([]);
   };
 
   return (
     <div>
-      {pageNumbers?.map((num) => {
-        return (
-          <button
-            key={num}
-            className={page === num ? "btnActive" : "btnPagination"}
-            value={num}
-            onClick={handleClick}
-          >
-            {num}
-          </button>
-        );
-      })}
+      <Pagination className="d-flex justify-content-center">
+        {pageNumbers?.map((num) => {
+          return (
+            <Pagination.Item
+              size="sm"
+              key={num}
+              active={page === num}
+              value={num}
+              onClick={() => handleClick(num)}
+            >
+              {num}
+            </Pagination.Item>
+          );
+        })}
+      </Pagination>
     </div>
   );
 }
