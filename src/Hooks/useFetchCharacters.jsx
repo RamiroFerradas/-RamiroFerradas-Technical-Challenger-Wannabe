@@ -4,7 +4,6 @@ import axios from "axios";
 export default function useFetchCharacters(page) {
   const [characters, setCharacters] = useState([]);
   const [totalCharacters, setTotalCharacters] = useState();
-
   const fetchCharacters = async () => {
     try {
       const response = (
@@ -18,8 +17,9 @@ export default function useFetchCharacters(page) {
   };
 
   useEffect(() => {
-    fetchCharacters();
-  }, [page]);
+    console.log(characters);
+    if (!characters.length) fetchCharacters();
+  }, [page, characters.length]);
 
   return { characters, totalCharacters, setCharacters };
 }

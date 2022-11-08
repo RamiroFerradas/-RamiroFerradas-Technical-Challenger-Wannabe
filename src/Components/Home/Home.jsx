@@ -9,8 +9,12 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import useFetchDetails from "../../Hooks/useFetchDetails";
 import Detail from "../Detail/Detail";
+import Navbar from "../NavBar/Navbar";
+import useLoader from "../../Hooks/useLoader";
 
 export default function Home() {
+  const { load } = useLoader();
+  console.log(load);
   const [page, setPage] = useState(1);
   const [characterDetails, setCharacterDetails] = useState(false);
   const { characters, totalCharacters, setCharacters } =
@@ -30,7 +34,6 @@ export default function Home() {
     setCharacters([]);
   };
   const handleDetail = async (e) => {
-    console.log(e, "acaaaaa");
     setUrl(e);
     setCharacterDetails(!characterDetails);
   };
@@ -43,6 +46,11 @@ export default function Home() {
     />
   ) : (
     <div className={style.body}>
+      {!characters.length ? (
+        <div></div>
+      ) : (
+        <Navbar characters={characters} setCharacters={setCharacters} />
+      )}
       <div>
         {pageNumbers?.map((num) => {
           return (
@@ -57,20 +65,21 @@ export default function Home() {
           );
         })}
       </div>
-
       <ul>
         {!characters.length ? (
           <Loader />
         ) : (
-          characters.map((e) => {
-            return (
-              <li key={e.name} onClick={() => handleDetail(e.url)}>
-                <button>
-                  <span>{e.name}</span>
-                </button>
-              </li>
-            );
-          })
+          <div>
+            {characters.map((e) => {
+              return (
+                <li key={e.name} onClick={() => handleDetail(e.url)}>
+                  <button>
+                    <span>{e.name}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </div>
         )}
       </ul>
     </div>
