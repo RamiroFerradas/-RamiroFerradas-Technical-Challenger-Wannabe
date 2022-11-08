@@ -17,8 +17,12 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
     fetchSpecies(detail.species);
   }, [detail]);
 
+  const handleClose = () => {
+    setCharacterDetails(!characterDetails);
+  };
+
   return (
-    <div className={styles.body}>
+    <div className={styles.body} onClick={handleClose}>
       <Container
         fluid
         className="d-flex justify-content-center align-items-center"
@@ -27,13 +31,14 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
           <Loader />
         ) : (
           <Card
+            border="warning"
             bg="dark"
             text="light"
             style={{ width: "18rem", height: "25rem" }}
             className="mb-2 text-center"
           >
             <Card.Body>
-              <Card.Title>{detail.name.toUpperCase()}</Card.Title>
+              <Card.Title className="text-uppercase">{detail.name}</Card.Title>
               <Card.Text>
                 <span>Height: {detail.height} mts.</span>
               </Card.Text>
@@ -72,10 +77,7 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
         )}
       </Container>
       {detail.name && (
-        <Button
-          variant="outline-warning"
-          onClick={() => setCharacterDetails(!characterDetails)}
-        >
+        <Button variant="outline-warning" onClick={handleClose}>
           Close
         </Button>
       )}
