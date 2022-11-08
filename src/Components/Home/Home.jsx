@@ -7,6 +7,7 @@ import Detail from "../Detail/Detail";
 import SearchBar from "../NavBar/SearchBar";
 import CardHome from "../CardHome/CardHome";
 import { Col, Row } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useState(false);
@@ -22,23 +23,22 @@ export default function Home() {
     pageNumbers.push(i);
   }
 
-  const handleClick = async (e) => {
-    setPage(e.target.value);
-    setCharacters([]);
-  };
+  const [show, setShow] = useState(true);
+
   const handleDetail = async (e) => {
     setUrl(e);
     setCharacterDetails(!characterDetails);
   };
 
-  return characterDetails ? (
-    <Detail
-      url={url}
-      characterDetails={characterDetails}
-      setCharacterDetails={setCharacterDetails}
-    />
-  ) : (
+  return (
     <div className={style.body}>
+      {characterDetails && (
+        <Detail
+          url={url}
+          characterDetails={characterDetails}
+          setCharacterDetails={setCharacterDetails}
+        />
+      )}
       <SearchBar
         characters={characters}
         setCharacters={setCharacters}
@@ -49,10 +49,10 @@ export default function Home() {
         <Loader />
       ) : (
         <div>
-          <Row xs={2} md={4} s={2} lg={5} className="g-3">
+          <Row xs={2} md={4} s={2} lg={5} className="g-3 p-3">
             {characters.map((e) => {
               return (
-                <Col>
+                <Col key={e.name}>
                   <CardHome handleDetail={handleDetail} character={e} />
                 </Col>
               );
@@ -60,6 +60,7 @@ export default function Home() {
           </Row>
         </div>
       )}
+
       <Paginado
         totalCharacters={totalCharacters}
         page={page}

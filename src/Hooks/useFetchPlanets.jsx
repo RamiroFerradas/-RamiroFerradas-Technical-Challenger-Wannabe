@@ -7,7 +7,7 @@ export default function useFetchPlanets() {
   const fetchDetailsPlanets = async (value) => {
     const response = (await axios(value)).data;
 
-    setPlanet(await response.name);
+    setPlanet(response?.name);
   };
 
   useEffect(() => {

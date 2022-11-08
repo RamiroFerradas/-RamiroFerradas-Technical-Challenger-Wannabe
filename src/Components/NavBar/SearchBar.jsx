@@ -37,18 +37,18 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
   return (
     <div>
       <Stack>
-        <Navbar bg="dark" className="mb-3" variant="dark ">
-          <Navbar.Brand onClick={handleClear}>
-            <img
-              alt="logoStarWars"
-              src={logoSW}
-              width="125"
-              height="65"
-              className="d-inline-block align-top"
-            />
-          </Navbar.Brand>
+        <Navbar expand="md" bg="dark" className="mb-3" variant="dark ">
           <Container fluid className="d-flex justify-content-center">
-            <Form className="d-flex " onSubmit={handleSubmit}>
+            <Navbar.Brand onClick={handleClear}>
+              <img
+                alt="logoStarWars"
+                src={logoSW}
+                width="125"
+                height="65"
+                className="d-inline-block align-top"
+              />
+            </Navbar.Brand>
+            <Form className="d-flex" onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
                 placeholder="Search"

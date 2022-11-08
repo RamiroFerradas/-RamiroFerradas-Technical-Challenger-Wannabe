@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Pagination, Button, PageItem } from "react-bootstrap";
-import styles from "./Paginado.module.css";
-import { GrNext, GrFormPrevious } from "react-icons/gr";
-import { FcPrevious } from "react-icons/fc";
+import React, { useState } from "react";
+import { Pagination, Button } from "react-bootstrap";
 
 export default function Paginado({
   page,

@@ -6,9 +6,8 @@ export default function useFetchFilms() {
 
   const fetchDetailsFilms = async (value) => {
     console.log(value);
-    const res = value.map(async (e) => {
-      return (await axios.get(e)).data.title;
-      // const titles = await response.title;
+    const res = await value.map(async (e) => {
+      return (await axios.get(e)).data;
     });
     console.log(res);
     setFilms(res);
