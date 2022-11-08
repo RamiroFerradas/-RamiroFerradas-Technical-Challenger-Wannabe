@@ -5,17 +5,32 @@ import useSearchCharacter from "../../Hooks/useFetchSearchCharacter";
 import useLoader from "../../Hooks/useLoader";
 import Loader from "../Loader/Loader";
 import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
+import Swal from "sweetalert2";
 
 export default function SearchBar({ characters, setCharacters, setPage }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
+  const [noMatch, setNoMatch] = useState(false);
 
   const { search, fetchSearchCharacter } = useSearchCharacter();
 
   useEffect(() => {
     if (name) {
-      setCharacters(search);
       setLoad(false);
+      if (search.length) {
+        setCharacters(search);
+        setNoMatch(false);
+      } else {
+        setNoMatch(true);
+        Swal.fire({
+          icon: "error",
+          text: "No character found with that name",
+          showConfirmButton: false,
+          timer: 1400,
+          background: "#0c0c0cb0",
+          color: "white",
+        });
+      }
     }
   }, [search]);
 
@@ -23,6 +38,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
     e.preventDefault();
     fetchSearchCharacter(name);
     setLoad(true);
+    e.target.reset();
   };
 
   const handleInputChange = (e) => {
@@ -48,7 +64,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
                 className="d-inline-block align-top"
               />
             </Navbar.Brand>
-            <Form className="d-flex" onSubmit={handleSubmit}>
+            <Form className="d-flex  " onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
                 placeholder="Search"
@@ -60,7 +76,7 @@ export default function SearchBar({ characters, setCharacters, setPage }) {
                 className="me-3"
                 type="submit"
                 variant="outline-warning"
-                disabled={load || !name}
+                disabled={load || !name || /[^\w\s]/.test(name)}
               >
                 {load ? "Loading…" : "Search"}
               </Button>

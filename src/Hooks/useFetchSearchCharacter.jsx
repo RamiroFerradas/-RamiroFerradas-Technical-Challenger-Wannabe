@@ -6,12 +6,18 @@ export default function useSearchCharacter() {
   const [search, setSearch] = useState([]);
 
   const fetchSearchCharacter = async (value) => {
-    const response = (
-      await axios.get(`https://swapi.dev//api/people/?search=${value}`)
-    ).data;
-    const res = await response.results;
+    if (value) {
+      try {
+        const response = (
+          await axios.get(`https://swapi.dev//api/people/?search=${value}`)
+        ).data;
 
-    setSearch(await res);
+        const res = await response.results;
+        setSearch(await res);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   useEffect(() => {

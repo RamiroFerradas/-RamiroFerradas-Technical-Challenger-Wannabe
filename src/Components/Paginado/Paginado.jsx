@@ -17,8 +17,8 @@ export default function Paginado({
   }
 
   const handleClick = async (num) => {
-    setPage(await num);
     setCharacters([]);
+    setPage(num);
   };
 
   return (

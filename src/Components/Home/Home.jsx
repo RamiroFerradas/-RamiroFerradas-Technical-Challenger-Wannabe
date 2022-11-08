@@ -11,14 +11,15 @@ import Modal from "react-bootstrap/Modal";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useState(false);
-  const { characters, totalCharacters, setCharacters, fetchCharacters } =
-    useFetchCharacters();
+  const {
+    characters,
+    totalCharacters,
+    setCharacters,
+    fetchCharacters,
+    page,
+    setPage,
+  } = useFetchCharacters();
   const [url, setUrl] = useState();
-  const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    fetchCharacters(page);
-  }, [page]);
 
   let pageNumbers = [];
   let [characterPerPage, setcharacterPerPage] = useState(10);
