@@ -13,4 +13,4 @@ export default function FieldText({ title, text, terminacion, className }) {
   );
 }
 
-/*Componente reutilizable para renderizar texto dentro de una card pasandole las props opcioonales para renderizar */
+/*Componente reutilizable para renderizar texto dentro de una card pasandole las props opcioonales para renderizar, como el classname */
