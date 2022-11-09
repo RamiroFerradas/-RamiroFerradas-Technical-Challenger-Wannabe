@@ -7,6 +7,7 @@ import useFetchSpecies from "../../Hooks/useFetchSpecies";
 import useTheme from "../../Hooks/useTheme";
 import { textTransformation } from "../../Utils/TextTransformation";
 import { Button, Card, Container } from "react-bootstrap";
+import FieldText from "./FieldText";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
   const { detail, setDetail } = useFetchDetails(url);
@@ -43,33 +44,40 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
             <Card.Body>
               <Card.Title className="text-uppercase">{detail.name}</Card.Title>
 
-              <Card.Text className="mt-4 text-center">
-                <span>Height: {detail.height} mts.</span>
-              </Card.Text>
-              <Card.Text>
-                <span>Hair color: {textTransformation(detail.hair_color)}</span>
-              </Card.Text>
-              <Card.Text>
-                <span>Skin color: {textTransformation(detail.skin_color)}</span>
-              </Card.Text>
-              <Card.Text>
-                <span>Birth year: {textTransformation(detail.birth_year)}</span>
-              </Card.Text>
-              <Card.Text>
-                <span>Gender: {textTransformation(detail.gender)}</span>
-              </Card.Text>
+              <FieldText
+                className="mt-4 text-center"
+                title="Height:"
+                text={detail.height}
+                terminacion="mts."
+              />
+              <FieldText
+                title="Hair color:"
+                text={textTransformation(detail.hair_color)}
+              />
+              <FieldText
+                title="Skin color:"
+                text={textTransformation(detail.skin_color)}
+              />
+              <FieldText
+                title="Birth year:"
+                text={textTransformation(detail.birth_year)}
+              />
+              <FieldText
+                title="Gender:"
+                text={textTransformation(detail.gender)}
+              />
+
               {planet.length ? (
-                <Card.Text>
-                  <span>Homeworld: {textTransformation(planet)}</span>
-                </Card.Text>
+                <FieldText
+                  title="Homeworld:"
+                  text={textTransformation(planet)}
+                />
               ) : (
                 <span></span>
               )}
 
               {species.length ? (
-                <Card.Text>
-                  <span>Species: {species}</span>
-                </Card.Text>
+                <FieldText title="Species:" text={species} />
               ) : (
                 <span></span>
               )}
