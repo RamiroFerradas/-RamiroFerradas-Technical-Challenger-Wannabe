@@ -7,7 +7,7 @@ import useFetchSpecies from "../../Hooks/useFetchSpecies";
 import useTheme from "../../Hooks/useTheme";
 import { textTransformation } from "../../Utils/TextTransformation";
 import { Button, Card, Container } from "react-bootstrap";
-import FieldText from "../FieldText/FieldText";
+import FieldText from "../../Utils/FieldText/FieldText";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
   const { detail, setDetail } = useFetchDetails(url);
