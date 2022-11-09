@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pagination, Button } from "react-bootstrap";
+import useTheme from "../../Hooks/useTheme";
 
 export default function Paginado({
   page,
@@ -15,7 +16,7 @@ export default function Paginado({
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-
+  const { theme } = useTheme();
   const handleClick = async (num) => {
     setCharacters([]);
     setPage(num);
@@ -38,11 +39,13 @@ export default function Paginado({
           return (
             <Button
               size="sm"
-              className="me-1 text-warning"
+              className={
+                theme === "dark" ? "me-1 text-warning" : "me-1 text-ligth "
+              }
               key={num}
               disabled={page === num}
               onClick={() => handleClick(num)}
-              variant="dark"
+              variant={"dark"}
             >
               {num}
             </Button>

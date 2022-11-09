@@ -4,11 +4,14 @@ import useSearchCharacter from "../../Hooks/useFetchSearchCharacter";
 import useLoader from "../../Hooks/useLoader";
 import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
 import Swal from "sweetalert2";
+import useTheme from "../../Hooks/useTheme";
+import style from "./SearchBar.module.css";
 
 export default function SearchBar({ setCharacters, setPage, setSearch }) {
   const [name, setName] = useState();
   const { load, setLoad } = useLoader();
   const { search, fetchSearchCharacter } = useSearchCharacter();
+  const { theme, handleTheme, check } = useTheme();
 
   useEffect(() => {
     if (name) {
@@ -49,22 +52,45 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
   return (
     <div>
       <Stack>
-        <Navbar expand="md" bg="dark" className="mb-3" variant="dark ">
-          <Container fluid className="d-flex justify-content-center">
+        <Navbar
+          expand="lg"
+          bg={theme === "dark" ? "dark" : "secondary"}
+          className="mb-3"
+          variant="dark "
+        >
+          <Container
+            fluid
+            className="d-flex justify-content-center align-items-center"
+            ali
+          >
+            <div className={style.switch}>
+              <input
+                type="checkbox"
+                className={style.checkbox}
+                id="checkbox"
+                onChange={handleTheme}
+                defaultChecked={check}
+              />
+              <label for="checkbox" className={style.label}>
+                <i className={`fas fa-moon ${style.fa_moon}`}></i>
+                <i className={`fas fa-sun ${style.fa_sun}`}></i>
+                <div className={style.ball} />
+              </label>
+            </div>
             <Navbar.Brand onClick={handleClear}>
               <img
                 alt="logoStarWars"
                 src={logoSW}
                 width="125"
                 height="65"
-                className="d-inline-block align-top"
+                className="d-inline-block align-top me-5"
               />
             </Navbar.Brand>
             <Form className="d-flex" onSubmit={handleSubmit}>
               <Form.Control
                 type="search"
                 placeholder="Search..."
-                className="me-3 text-center form-control"
+                className="me-4 text-center form-control"
                 aria-label="Search"
                 onChange={(e) => handleInputChange(e)}
               />
@@ -76,7 +102,13 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
               >
                 {load ? "Loading…" : "Search"}
               </Button>
-              <Button onClick={handleClear} variant="outline-secondary">
+              <Button
+                className="me-3"
+                onClick={handleClear}
+                variant={
+                  theme === "dark" ? "outline-secondary" : "outline-dark"
+                }
+              >
                 Reset
               </Button>
             </Form>

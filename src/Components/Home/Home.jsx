@@ -8,6 +8,7 @@ import CardHome from "../CardHome/CardHome";
 import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { Col, Row } from "react-bootstrap";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
+import useTheme from "../../Hooks/useTheme";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useLocalStorage(
@@ -24,6 +25,7 @@ export default function Home() {
   } = useFetchCharacters();
   const [url, setUrl] = useState();
   const [search, setSearch] = useLocalStorage("search", false);
+  const { theme } = useTheme();
 
   const handleDetail = async (e) => {
     setUrl(e);
@@ -31,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className={style.body}>
+    <div className={theme === "dark" ? style.body : style.bodyLigth}>
       {characterDetails && (
         <Detail
           url={url}

@@ -10,3 +10,15 @@
   position: fixed;
   z-index: 999;
 }
+.bodyLigth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(56, 55, 55, 0.815);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  z-index: 999;
+}
