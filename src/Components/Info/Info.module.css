@@ -1,0 +1,25 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(56, 55, 55, 0.815);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  z-index: 999;
+}
+.lkd {
+  color: rgb(11, 121, 224);
+  text-decoration: none;
+}
+.gh {
+  color: rgb(168, 166, 166);
+}
+
+.lkd:hover,
+.gh:hover {
+  color: rgb(99, 99, 99);
+  transition: 0.2s;
+}

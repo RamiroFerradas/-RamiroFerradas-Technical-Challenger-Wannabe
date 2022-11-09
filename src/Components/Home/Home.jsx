@@ -9,6 +9,8 @@ import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { Col, Row } from "react-bootstrap";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import useTheme from "../../Hooks/useTheme";
+import { Modal, Button } from "react-bootstrap";
+import Info from "../Info/Info";
 
 export default function Home() {
   const [characterDetails, setCharacterDetails] = useLocalStorage(
@@ -24,6 +26,9 @@ export default function Home() {
     setTotalCharacters,
   } = useFetchCharacters();
   const [url, setUrl] = useState();
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => setShow(true);
   const [search, setSearch] = useLocalStorage("search", false);
   const { theme } = useTheme();
 
@@ -41,6 +46,7 @@ export default function Home() {
           setCharacterDetails={setCharacterDetails}
         />
       )}
+      {show && <Info show={show} setShow={setShow} />}
       <SearchBar
         setSearch={setSearch}
         characters={characters}
@@ -70,6 +76,11 @@ export default function Home() {
               setCharacters={setCharacters}
             />
           )}
+
+          <i
+            onClick={handleShow}
+            className={`fa-sharp fa-solid fa-circle-info ${style.info}`}
+          ></i>
         </div>
       )}
     </div>
