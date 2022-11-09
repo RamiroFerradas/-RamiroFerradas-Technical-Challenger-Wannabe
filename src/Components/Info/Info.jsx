@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import useTheme from "../../Hooks/useTheme";
-import FieldText from "../Detail/FieldText";
+import FieldText from "../FieldText/FieldText";
 import styles from "./Info.module.css";
 
 export default function Info({ show, setShow }) {
