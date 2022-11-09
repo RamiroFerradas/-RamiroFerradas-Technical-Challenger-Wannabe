@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./Detail.module.css";
 import Loader from "../Loader/Loader";
 import useFetchDetails from "../../Hooks/useFetchDetails";
 import useFetchPlanets from "../../Hooks/useFetchPlanets";
 import useFetchSpecies from "../../Hooks/useFetchSpecies";
 import useTheme from "../../Hooks/useTheme";
-import { Button, Card, Container } from "react-bootstrap";
 import { textTransformation } from "../../Utils/TextTransformation";
+import { Button, Card, Container } from "react-bootstrap";
 
 export default function Detail({ url, setCharacterDetails, characterDetails }) {
   const { detail, setDetail } = useFetchDetails(url);

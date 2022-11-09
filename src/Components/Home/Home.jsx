@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import useFetchCharacters from "../../Hooks/useFetchCharacters";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
+import useTheme from "../../Hooks/useTheme";
+
+import { Col, Row } from "react-bootstrap";
 import style from "./Home.module.css";
+
+//Components:
 import Paginado from "../Paginado/Paginado";
 import Loader from "../Loader/Loader";
 import Detail from "../Detail/Detail";
 import NavBar from "../NavBar/NavBar";
 import CardHome from "../CardHome/CardHome";
-import useFetchCharacters from "../../Hooks/useFetchCharacters";
-import { Col, Row } from "react-bootstrap";
-import { useLocalStorage } from "../../Hooks/useLocalStorage";
-import useTheme from "../../Hooks/useTheme";
-import { Modal, Button } from "react-bootstrap";
 import Info from "../Info/Info";
 
 export default function Home() {

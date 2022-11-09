@@ -23,3 +23,5 @@ export default function useFetchSpecies() {
 
   return { species, fetchSpecies };
 }
+
+//Hook perzonalizado para poder extraer el detalle de la especie del personaje, pasandole como "value" la respectiva url. Posible de reutilizar para extraer la informacion en cualquier parte de la pagina.

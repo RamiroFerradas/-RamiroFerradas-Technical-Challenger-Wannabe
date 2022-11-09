@@ -15,3 +15,5 @@ export default function useFetchDetails(value) {
   }, []);
   return { detail, setDetail };
 }
+
+//Hook perzonalizado para poder extraer el detalle del personaje seleccionado, pasandole como "value", la respectiva url. Posible de reutilizar para extraer la informacion en cualquier parte de la pagina.

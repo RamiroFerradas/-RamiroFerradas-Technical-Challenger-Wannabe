@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, Container } from "react-bootstrap";
-import useTheme from "../../Hooks/useTheme";
 import styles from "./Info.module.css";
+import useTheme from "../../Hooks/useTheme";
 
 export default function Info({ show, setShow }) {
   const handleClose = () => setShow(false);

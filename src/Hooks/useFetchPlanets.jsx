@@ -21,3 +21,5 @@ export default function useFetchPlanets() {
 
   return { planet, fetchDetailsPlanets };
 }
+
+//Hook perzonalizado para poder extraer el detalle del planeta ("homeworld") pasandole como "value" la respectiva url. Posible de reutilizar para extraer la informacion en cualquier parte de la pagina.

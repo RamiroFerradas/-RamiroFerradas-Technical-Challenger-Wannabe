@@ -26,3 +26,8 @@ const ThemeProvider = ({ children }) => {
 };
 export { ThemeProvider };
 export default ThemeContext;
+
+/*Contexto de tema de color para poder para poder usar las funcionalidades en toda la pagina. Complementado con el hook "useTheme". 
+
+Uso:
+ const  { theme, handleTheme, check } = useTheme() */

@@ -35,3 +35,5 @@ export default function useFetchCharacters() {
     setTotalCharacters,
   };
 }
+
+//Hook perzonalizado para poder extraer los personajes de la api (10 por pedido) en la pagina que se le indique. Posible de reutilizar para extraer la informacion en cualquier parte de la pagina.

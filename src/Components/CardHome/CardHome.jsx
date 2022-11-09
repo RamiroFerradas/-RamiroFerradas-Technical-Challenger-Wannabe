@@ -10,7 +10,6 @@ export default function CardHome({ character, handleDetail }) {
         text={theme === "dark" ? "light" : "dark"}
         className="text-center"
         body
-        // style={{ width: "15vw" }}
         key={character.name}
         border="warning"
         bg={theme}

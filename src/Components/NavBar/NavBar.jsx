@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form, Navbar, Stack } from "react-bootstrap";
 import useSearchCharacter from "../../Hooks/useFetchSearchCharacter";
 import useLoader from "../../Hooks/useLoader";
-import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
-import Swal from "sweetalert2";
 import useTheme from "../../Hooks/useTheme";
+import logoSW from "../../assets/Logos/Star_Wars_Logo..png";
 import style from "./NavBar.module.css";
+import { Container, Form, Navbar, Stack } from "react-bootstrap";
 import SearchBar from "./SearchBar";
+import Swal from "sweetalert2";
 
 export default function NavBar({ setCharacters, setPage, setSearch }) {
   const [name, setName] = useState();
