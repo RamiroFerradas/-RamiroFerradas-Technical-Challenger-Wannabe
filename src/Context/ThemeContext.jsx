@@ -9,7 +9,7 @@ const ThemeProvider = ({ children }) => {
     "theme",
     initialTheme ? initialTheme : `dark`
   );
-  const [check, setCheck] = useLocalStorage("check", false);
+  const [check, setCheck] = useLocalStorage("check", true);
 
   const handleTheme = (e) => {
     if (e.target.checked === true) {
