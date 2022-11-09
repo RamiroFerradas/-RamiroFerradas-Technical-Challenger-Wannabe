@@ -21,7 +21,9 @@ export default function Info({ show, setShow }) {
           className="mb-2 text-center"
         >
           <Card.Body>
-            <Card.Title>App desing by Ramiro Ferradas</Card.Title>
+            <Card.Title>
+              <FieldText text="App desing by Ramiro Ferradas" />
+            </Card.Title>
 
             <FieldText
               className="mt-4"
