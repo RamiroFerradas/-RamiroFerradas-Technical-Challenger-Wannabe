@@ -3,7 +3,7 @@ import style from "./Home.module.css";
 import Paginado from "../Paginado/Paginado";
 import Loader from "../Loader/Loader";
 import Detail from "../Detail/Detail";
-import SearchBar from "../NavBar/SearchBar";
+import NavBar from "../NavBar/NavBar";
 import CardHome from "../CardHome/CardHome";
 import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { Col, Row } from "react-bootstrap";
@@ -13,6 +13,9 @@ import { Modal, Button } from "react-bootstrap";
 import Info from "../Info/Info";
 
 export default function Home() {
+  const [url, setUrl] = useState();
+  const [show, setShow] = useState(false);
+  const [search, setSearch] = useLocalStorage("search", false);
   const [characterDetails, setCharacterDetails] = useLocalStorage(
     "modalDetail",
     false
@@ -25,12 +28,9 @@ export default function Home() {
     setPage,
     setTotalCharacters,
   } = useFetchCharacters();
-  const [url, setUrl] = useState();
-  const [show, setShow] = useState(false);
+  const { theme } = useTheme();
 
   const handleShow = () => setShow(true);
-  const [search, setSearch] = useLocalStorage("search", false);
-  const { theme } = useTheme();
 
   const handleDetail = async (e) => {
     setUrl(e);
@@ -46,8 +46,9 @@ export default function Home() {
           setCharacterDetails={setCharacterDetails}
         />
       )}
+
       {show && <Info show={show} setShow={setShow} />}
-      <SearchBar
+      <NavBar
         setSearch={setSearch}
         characters={characters}
         setCharacters={setCharacters}
@@ -68,6 +69,7 @@ export default function Home() {
               );
             })}
           </Row>
+
           {!search && (
             <Paginado
               totalCharacters={totalCharacters}
@@ -76,13 +78,12 @@ export default function Home() {
               setCharacters={setCharacters}
             />
           )}
-
-          <i
-            onClick={handleShow}
-            className={`fa-sharp fa-solid fa-circle-info ${style.info}`}
-          ></i>
         </div>
       )}
+      <i
+        onClick={handleShow}
+        className={`fa-sharp fa-solid fa-circle-info ${style.info}`}
+      ></i>
     </div>
   );
 }
