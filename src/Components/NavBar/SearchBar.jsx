@@ -56,8 +56,8 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
           expand="lg"
           bg={theme === "dark" ? "dark" : "secondary"}
           className="mb-3"
-          variant="dark "
-          style={{ minHeight: "110px" }}
+          variant="dark"
+          // style={{ minHeight: "110px" }}
         >
           <Container
             fluid
@@ -66,7 +66,7 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
           >
             <Navbar.Brand
               onClick={handleClear}
-              className="d-flex justify-content-center align-items-center me-5 "
+              className="d-flex justify-content-center align-items-center  "
             >
               <img alt="logoStarWars" src={logoSW} width="125" height="65" />
             </Navbar.Brand>

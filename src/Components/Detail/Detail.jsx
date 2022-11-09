@@ -37,12 +37,13 @@ export default function Detail({ url, setCharacterDetails, characterDetails }) {
             border="warning"
             bg={theme === "dark" ? "dark" : "secondary"}
             text="light"
-            style={{ width: "18rem", height: "25rem" }}
+            style={{ width: "18rem", height: "24rem" }}
             className="mb-2 text-center"
           >
             <Card.Body>
               <Card.Title className="text-uppercase">{detail.name}</Card.Title>
-              <Card.Text>
+
+              <Card.Text className="mt-4 text-center">
                 <span>Height: {detail.height} mts.</span>
               </Card.Text>
               <Card.Text>
