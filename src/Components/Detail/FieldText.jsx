@@ -6,7 +6,7 @@ export default function FieldText({ title, text, terminacion, className }) {
     <>
       <Card.Text className={className}>
         <span>
-          {title}: {text} {terminacion}
+          {title} {text} {terminacion}
         </span>
       </Card.Text>
     </>
