@@ -1,8 +1,10 @@
 .switch {
-  float: right;
   position: fixed;
   right: 30px;
-  top: 10px;
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .checkbox {
   opacity: 0;

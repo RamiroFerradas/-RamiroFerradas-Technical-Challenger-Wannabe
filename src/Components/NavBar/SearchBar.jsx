@@ -57,34 +57,18 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
           bg={theme === "dark" ? "dark" : "secondary"}
           className="mb-3"
           variant="dark "
+          style={{ minHeight: "110px" }}
         >
           <Container
             fluid
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center mt-3"
             ali
           >
-            <div className={style.switch}>
-              <input
-                type="checkbox"
-                className={style.checkbox}
-                id="checkbox"
-                onChange={handleTheme}
-                defaultChecked={check}
-              />
-              <label for="checkbox" className={style.label}>
-                <i className={`fas fa-moon ${style.fa_moon}`}></i>
-                <i className={`fas fa-sun ${style.fa_sun}`}></i>
-                <div className={style.ball} />
-              </label>
-            </div>
-            <Navbar.Brand onClick={handleClear}>
-              <img
-                alt="logoStarWars"
-                src={logoSW}
-                width="125"
-                height="65"
-                className="d-inline-block align-top me-5"
-              />
+            <Navbar.Brand
+              onClick={handleClear}
+              className="d-flex justify-content-center align-items-center me-5 "
+            >
+              <img alt="logoStarWars" src={logoSW} width="125" height="65" />
             </Navbar.Brand>
             <Form className="d-flex" onSubmit={handleSubmit}>
               <Form.Control
@@ -111,6 +95,20 @@ export default function SearchBar({ setCharacters, setPage, setSearch }) {
               >
                 Reset
               </Button>
+              <div className={`ms-3 ${style.switch}`}>
+                <input
+                  type="checkbox"
+                  className={style.checkbox}
+                  id="checkbox"
+                  onChange={handleTheme}
+                  defaultChecked={check}
+                />
+                <label for="checkbox" className={style.label}>
+                  <i className={`fas fa-moon ${style.fa_moon}`}></i>
+                  <i className={`fas fa-sun ${style.fa_sun}`}></i>
+                  <div className={style.ball} />
+                </label>
+              </div>
             </Form>
           </Container>
         </Navbar>
