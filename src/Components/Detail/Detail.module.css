@@ -22,3 +22,8 @@
   position: fixed;
   z-index: 999;
 }
+
+.card {
+  position: relative;
+  /* z-index: 9999; */
+}

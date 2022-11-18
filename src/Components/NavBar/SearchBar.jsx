@@ -22,9 +22,9 @@ export default function SearchBar({
         className="me-3"
         type="submit"
         variant="outline-warning"
-        disabled={load || !name}
+        disabled={!load || !name}
       >
-        {load ? "Loading…" : "Search"}
+        {!load ? "Loading…" : "Search"}
       </Button>
       <Button
         className="me-3"

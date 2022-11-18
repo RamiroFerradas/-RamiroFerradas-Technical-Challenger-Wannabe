@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useFetchCharacters from "../../Hooks/useFetchCharacters";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import useTheme from "../../Hooks/useTheme";
@@ -13,6 +13,8 @@ import Detail from "../Detail/Detail";
 import NavBar from "../NavBar/NavBar";
 import CardHome from "../CardHome/CardHome";
 import Info from "../Info/Info";
+import useFetchFilms from "../../Hooks/useFetchData";
+import useFetchData from "../../Hooks/useFetchData";
 
 export default function Home() {
   const [url, setUrl] = useState();
@@ -41,13 +43,15 @@ export default function Home() {
 
   return (
     <div className={theme === "dark" ? style.body : style.bodyLigth}>
-      {characterDetails && (
-        <Detail
-          url={url}
-          characterDetails={characterDetails}
-          setCharacterDetails={setCharacterDetails}
-        />
-      )}
+      <div className={style.details}>
+        {characterDetails && (
+          <Detail
+            url={url}
+            characterDetails={characterDetails}
+            setCharacterDetails={setCharacterDetails}
+          />
+        )}
+      </div>
 
       {show && <Info show={show} setShow={setShow} />}
       <NavBar
@@ -62,10 +66,10 @@ export default function Home() {
         <Loader />
       ) : (
         <div>
-          <Row xs={2} md={4} s={2} lg={5} className="g-3 p-3">
+          <Row xs={2} md={4} s={2} lg={4} className="g-3 p-3">
             {characters.map((e) => {
               return (
-                <Col key={e.name}>
+                <Col md={4} key={e.name}>
                   <CardHome handleDetail={handleDetail} character={e} />
                 </Col>
               );

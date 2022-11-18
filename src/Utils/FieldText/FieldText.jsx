@@ -4,8 +4,8 @@ import { Card } from "react-bootstrap";
 export default function FieldText({ title, text, terminacion, className }) {
   return (
     <>
-      <Card.Text className={className}>
-        <span>
+      <Card.Text className={className} key={text}>
+        <span key={text}>
           {title} {text} {terminacion}
         </span>
       </Card.Text>

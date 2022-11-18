@@ -16,7 +16,7 @@ export default function NavBar({ setCharacters, setPage, setSearch }) {
 
   useEffect(() => {
     if (name) {
-      setLoad(false);
+      setLoad(true);
       if (search.length) {
         setCharacters(search);
         setSearch(true);
@@ -36,7 +36,7 @@ export default function NavBar({ setCharacters, setPage, setSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchSearchCharacter(name);
-    setLoad(true);
+    setLoad(false);
     e.target.reset();
   };
 

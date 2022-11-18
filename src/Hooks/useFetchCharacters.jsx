@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import { useLocalStorage } from "./useLocalStorage";
+import { BASE_URL } from "../../BASE_URL";
 
 export default function useFetchCharacters() {
   const [characters, setCharacters] = useLocalStorage("character", []);
@@ -11,9 +12,8 @@ export default function useFetchCharacters() {
   );
   const fetchCharacters = async () => {
     try {
-      const response = (
-        await axios.get(`https://swapi.dev/api/people/?page=${page}`)
-      ).data;
+      const response = (await axios.get(`${BASE_URL}people/?page=${page}`))
+        .data;
       setCharacters(await response.results);
       setTotalCharacters(await response.count);
     } catch (error) {
@@ -21,7 +21,7 @@ export default function useFetchCharacters() {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!characters.length) fetchCharacters();
   }, [page, characters.length]);
 

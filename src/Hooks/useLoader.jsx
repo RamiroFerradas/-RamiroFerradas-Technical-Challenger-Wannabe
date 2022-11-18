@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function useLoader() {
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
 
   return { load, setLoad };
 }
